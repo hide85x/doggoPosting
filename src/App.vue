@@ -1,32 +1,43 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar color="blue" app>
+      <v-btn icon color="white" outlined v-if="$route.name !== 'home'" @click="$router.go(-1)">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-toolbar-title  >
+        <span id="title"  >DoggoSearch</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
+<script>
+import Home from './components/Home'
+import Post from './components/Post'
+import Details from './components/Details'
+
+export default {
+  name: "App",
+
+  components: {
+    Post, Details, Home
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  #title {
+    display: flex;
+    color:white;
+    text-align: center;
+    margin: auto;
   }
-}
 </style>
