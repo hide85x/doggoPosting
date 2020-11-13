@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
 import Post from '../components/Post'
 import Details from '../components/Details'
+import Camera from '../components/Camera';
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '../components/Home.vue')
   },
   {
+    path: '/camera',
+    name: 'camera',
+    component: Camera,
+    component: () => import(/* webpackChunkName: "home" */ '../components/Camera.vue')
+  },
+  {
     path: '/details/:id',
     name: 'details',
     component: Details,
@@ -23,6 +30,7 @@ const routes = [
   {
     path: '/post',
     name: 'post',
+    props: true,
     component: Post
   },
 ]
